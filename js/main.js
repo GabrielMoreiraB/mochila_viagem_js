@@ -1,6 +1,6 @@
 const form = document.getElementById('novoItem');
-const lista = document.querySelector('.lista');
-const item = lista.querySelector('.item');
+const lista = document.querySelector('#lista');
+
 
 form.addEventListener('submit', (evento) =>{
     evento.preventDefault();
@@ -21,9 +21,16 @@ form.addEventListener('submit', (evento) =>{
 })
 
 function criaItem(nome,quantidade){
-    const novoItem = item.cloneNode(true);
-    novoItem.querySelector('li').value = nome;
-    novoItem.querySelector('strong').value = quantidade;
+    const novoItem = document.createElement('li');
+    novoItem.classList.add('item');
+
+    const numeroItem = document.createElement('strong');
+    
+    numeroItem.innerHTML = quantidade;
+    novoItem.appendChild(numeroItem);
+    novoItem.innerHTML += nome;
+    lista.appendChild(novoItem);
+    console.log(novoItem);
 
 }
 
