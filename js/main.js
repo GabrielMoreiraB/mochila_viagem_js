@@ -13,17 +13,19 @@ form.addEventListener("submit", (evento) => {
     const nome = evento.target.elements['nome']
     const quantidade = evento.target.elements['quantidade']
 
-    const existe = itens.find(elemento => elemento.nome === nome.value);
-    console.log(existe)
+    const existe = itens.find( elemento => elemento.nome === nome.value)
+
     const itemAtual = {
         "nome": nome.value,
         "quantidade": quantidade.value
     }
 
     if (existe){
-        itemAtual.id = itemAtual.id;  
+        itemAtual.id = existe.id;  
         
         atualizaElemento(itemAtual);
+
+        itens[existe.id] = itemAtual;
     } else{
         itemAtual.id = itens.length;
         
@@ -57,5 +59,6 @@ function criaElemento(item) {
 }
 
 function atualizaElemento(item){
-    document.querySelector("[data-id='" + item.id + "']").innerHTML = item.quantidade;
+    document.querySelector("[data-id='"+item.id+"']").innerHTML =
+    item.quantidade;
 }
